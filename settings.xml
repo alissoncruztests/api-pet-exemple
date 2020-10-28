@@ -1,0 +1,8 @@
+<server>
+    <id>docker.io</id>
+    <username>2337373dea7a</username>
+    <password>root</password>
+    <configuration>
+        <email>alissoncruz.si@gmail.com</email>
+    </configuration>
+</server>
