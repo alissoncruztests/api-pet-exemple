@@ -9,8 +9,8 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.spring</groupId>
-	<artifactId>agendalive</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>pet</artifactId>
+	<version>0.0.1</version>
 	<name>pet</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -27,6 +27,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+
+<!--		<dependency>-->
+<!--			<groupId>com.spotify</groupId>-->
+<!--			<artifactId>dockerfile-maven-plugin</artifactId>-->
+<!--			<version>1.4.13</version>-->
+<!--		</dependency>-->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -46,6 +52,31 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.4.13</version>
+				<executions>
+					<execution>
+						<id>default</id>
+						<goals>
+							<goal>build</goal>
+							<goal>push</goal>
+						</goals>
+						<configuration>
+							<dockerfile>Dockerfile</dockerfile>
+						</configuration>
+					</execution>
+				</executions>
+				<configuration>
+					<useMavenSettingsForAuth>true</useMavenSettingsForAuth>
+					<repository>pet</repository>
+					<tag>${project.version}</tag>
+					<buildArgs>
+						<JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+					</buildArgs>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
