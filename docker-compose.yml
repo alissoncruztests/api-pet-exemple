@@ -1,0 +1,19 @@
+version: "3"
+services:
+  api-database:
+    image: mongo:latest
+    container_name: api-database
+    ports:
+      - 27017:27017
+  api-pet-exemple:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    image: pet
+    ports:
+      - 8080:8080
+      - 5005:5005
+    environment:
+      - PROFILE=dev
+    links:
+      - api-database
